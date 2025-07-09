@@ -1,0 +1,6 @@
+aiogram==3.4.1
+python-telegram-bot==22.2
+instaloader
+requests
+yt-dlp
+python-dotenv
