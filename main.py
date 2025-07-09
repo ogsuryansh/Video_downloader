@@ -10,7 +10,6 @@ import shutil
 import requests
 import instaloader
 import yt_dlp
-from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, Router, types
 from aiogram.filters import Command  # ✅ Correct for Aiogram v3
 
@@ -22,8 +21,9 @@ from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, F
 logging.basicConfig(level=logging.INFO)
 
 # Load environment variables and constants
-load_dotenv()
-TOKEN = os.getenv("BOT_TOKEN")
+
+TOKEN = "7585828329:AAEh66imVhfbIgV-A-olXPdsrN3cQ6_JMNg"
+
 OWNER_ID = 7574316340  # Replace with your Telegram ID
 DELETE_DELAY = 1800   # 30 minutes (in seconds)
 
