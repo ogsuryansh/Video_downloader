@@ -1,0 +1,27 @@
+{
+  "name": "Video Downloader Bot",
+  "description": "A Telegram bot that downloads videos from YouTube, Instagram, TikTok, and Twitter",
+  "repository": "https://github.com/ogsuryansh/Video_downloader",
+  "keywords": ["python", "telegram", "bot", "video", "downloader"],
+  "env": {
+    "BOT_TOKEN": {
+      "description": "Your Telegram bot token from @BotFather",
+      "required": true
+    },
+    "OWNER_ID": {
+      "description": "Your Telegram user ID for admin commands",
+      "required": true
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  }
+} 
