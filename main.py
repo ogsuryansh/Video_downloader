@@ -25,7 +25,7 @@ logging.basicConfig(level=logging.INFO)
 
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
-OWNER_ID = 7574316340  # Replace with your Telegram ID
+OWNER_ID = int(os.getenv("OWNER_ID", "7574316340"))  # Get from .env or use default
 DELETE_DELAY = 1800   # 30 minutes (in seconds)
 
 # Initialize bot and dispatcher (note: Dispatcher now takes no parameters)
@@ -177,13 +177,23 @@ async def download_tiktok(url: str):
     Downloads a TikTok video asynchronously using the TikMate API.
     """
     try:
-        response = requests.get(f"https://api.tikmate.app/api/lookup?url={url}", timeout=10)
+        response = requests.get(f"https://api.tikmate.app/api/lookup?url={url}", timeout=15)
+        response.raise_for_status()  # Raise exception for bad status codes
         data = response.json()
         video_url = data.get('videoUrl')
         if video_url:
             filename = f"tiktok_{int(time.time())}.mp4"
             await download_file(video_url, filename)
             return filename
+        else:
+            logging.error("TikTok API did not return a video URL")
+            return None
+    except requests.exceptions.Timeout:
+        logging.error("TikTok API request timed out")
+        return None
+    except requests.exceptions.RequestException as e:
+        logging.error(f"TikTok API request failed: {e}")
+        return None
     except Exception as e:
         logging.error(f"TikTok Download Error: {e}")
         return None
@@ -193,13 +203,23 @@ async def download_twitter(url: str):
     Downloads a Twitter video asynchronously using the twdown API.
     """
     try:
-        response = requests.get(f"https://twdown.net/download?url={url}", timeout=10)
+        response = requests.get(f"https://twdown.net/download?url={url}", timeout=15)
+        response.raise_for_status()  # Raise exception for bad status codes
         data = response.json()
         video_url = data.get("video_url")
         if video_url:
             filename = f"twitter_{int(time.time())}.mp4"
             await download_file(video_url, filename)
             return filename
+        else:
+            logging.error("Twitter API did not return a video URL")
+            return None
+    except requests.exceptions.Timeout:
+        logging.error("Twitter API request timed out")
+        return None
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Twitter API request failed: {e}")
+        return None
     except Exception as e:
         logging.error(f"Twitter Download Error: {e}")
         return None
