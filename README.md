@@ -71,6 +71,12 @@ A Telegram bot that can download videos from YouTube, Instagram, TikTok, and Twi
 
 ## Deployment
 
+**💡 Free Hosting Recommendations**: Since Heroku no longer offers a free tier, consider these free alternatives:
+- **Railway**: $5 free credit monthly
+- **Render**: Free tier available
+- **Fly.io**: Generous free tier (3 VMs)
+- **Replit**: Free tier available
+
 ### Heroku
 1. Fork this repository
 2. Create a new Heroku app
@@ -79,6 +85,8 @@ A Telegram bot that can download videos from YouTube, Instagram, TikTok, and Twi
    - `BOT_TOKEN`: Your Telegram bot token
    - `OWNER_ID`: Your Telegram user ID
 5. Deploy the app
+
+**Note**: Heroku no longer has a free tier. You'll need a paid plan ($7/month minimum).
 
 ### Railway
 1. Fork this repository
